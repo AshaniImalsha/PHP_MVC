@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="../Style/Insert_Style.css">
+    
+    <title>Document</title>
+</head>
+<body>
+
+    <script>
+        function doInsert(){
+            
+            var data = new FormData();
+            data.append("empid" , document.getElementById("empid").value);
+            data.append("fname" , document.getElementById("fname").value);
+            data.append("lname" , document.getElementById("lname").value);
+            data.append("password" , document.getElementById("password").value);
+            
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST", "../Controllers/Insert_Controller.php");
+            
+        
+            xhr.onload = function(){
+                
+                if(xhr.status==200){
+                   alert("Success");
+                   window.location.reload(); 
+                   window.location.reload(false); 
+                 
+                }else{
+                    alert("Already Exist");
+                    window.location.reload(); 
+                    window.location.reload(false); 
+                }
+                
+            };
+
+            xhr.send(data);
+             
+            return false;
+
+        }   
+    </script>
+
+    <div id="form-page">
+       
+        <div id="results">
+
+        </div>
+        <form  onsubmit="return doInsert()">
+            <div id="lbl"><label for="">Emp-ID</label></div>
+            <input type="text" id="empid" name="empid" placeholder="Enter employee id" required><br>
+            <div id="lbl"><label for="">First Name</label></div>
+            <input type="text" id="fname" name="fname" placeholder="Enter first name" required><br>
+            <div id="lbl"><label for="">Last Name</label></div>
+            <input type="text" id="lname" name="lname" placeholder="Enter last name" required><br>
+            <div id="lbl"><label for="">Contact Number</label></div>
+            <input type="text" id="password" name="password" placeholder="Enter Password" required><br>
+            <input type="submit" name="submit" value="Submit" class="btn">
+            <input type="submit" name="refesh" value="Search" class="btn" onclick="location.href = '../Views/Search_View.html';">
+        </form>
+
+    </div>   
+</body>
+</html>

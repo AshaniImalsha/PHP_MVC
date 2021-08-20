@@ -1,0 +1,40 @@
+body{
+    align-content: center;
+    background-color: rgb(255, 255, 255);
+}
+
+#form-page{
+    margin: auto;
+    font-size: 12pt;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    width:500px;
+    padding-top: 50px;
+    text-align: left;  
+}
+
+#lbl{
+    width: 200px;
+    margin-bottom: 10px;
+}
+
+input{
+    width: 300px;
+    margin-bottom: 20px;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid rgb(163, 163, 163);
+}
+
+.btn{
+    margin-top: 20px;
+    width: 325px;
+    background-color: #04AA6D;
+    color: white;
+    font-size: larger;
+}
+
+.btn:hover{
+    color: #04AA6D;
+    background-color: white;
+    border: 1px solid #04AA6D;
+}

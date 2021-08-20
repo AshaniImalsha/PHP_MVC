@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="../Style/Search_Style.css">
+
+    <title>MVC (user interface)</title>
+</head>
+<body>
+
+    <script>
+        function doSearch(){
+            
+            var data = new FormData();
+            data.append("search" , document.getElementById("search").value);
+            
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST", "../Controllers/Search_Controller.php");
+            
+            xhr.onload = function(){
+                
+                let results = document.getElementById("results");
+                
+                let search = JSON.parse(this.response);
+              
+                let mytable = document.getElementById("mytable");
+                mytable.innerHTML=`<table id="mytable"><thead><tr><th>Emp-ID</th><th>First Name</th><th>Last Name</th><th>Password</th></tr></table>`;
+                    
+                if (search !== null){
+                    for(let s of search){
+                        
+                        mytable.innerHTML += `<table id="mytable"><thead><tr><td>${s.EmpID}</td><td>${s.FirstName}</td><td>${s.LastName}</td><td>${s.Password}</td></tr></table>`;
+                    
+                    }
+                }
+            };
+
+            xhr.send(data);
+            return false;
+
+        }
+    </script>
+    
+    <div id="page">
+
+
+        <form onsubmit="return doSearch()">
+            <input type="text" id="search" required>
+            <input type="submit" value="Search" id="btn">
+        </form>
+
+        <div id="results">
+            <table id="mytable" > 
+                <col id="ID">
+                <col id="FName">
+                <col id="LName">
+                <col id="Pass">
+                <tr>
+                    <th>Emp-ID</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Password</th>
+                </tr >
+            </table>
+        </div>
+
+        <input type="submit" name="refesh" value="Back" class="btn" onclick="location.href = '../Views/Insert_View.html';">
+    </div>
+    
+</body>
+</html>
